@@ -1,35 +1,1327 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Mahasiswa</title>
-  <style>
-    body {font-family: Arial, sans-serif; background:#eef2f7; margin:0; color:#1e293b}
-    header {background:#164e63; color:white; text-align:center; padding:28px}
-    main {max-width:760px; margin:24px auto; background:white; padding:24px; border-radius:12px}
-    h2 {color:#0e7490}
-    footer {text-align:center; padding:16px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil Mahasiswa | Nur Hastri Safika</title>
+
+<style>
+:root {
+  --blue: #2563eb;
+  --cyan: #22d3ee;
+  --purple: #8b5cf6;
+  --pink: #f0abfc;
+  --navy: #172554;
+  --text: #24345b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 5% 5%, #dbeafe, transparent 35%),
+    radial-gradient(ellipse at 95% 20%, #f3e8ff, transparent 30%),
+    linear-gradient(135deg, #f8fbff, #eefaff, #f9f5ff);
+  min-height: 100vh;
+}
+
+button, a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.orb {
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orb-one {
+  width: 230px;
+  height: 230px;
+  background: linear-gradient(135deg, #67e8f988, #818cf888);
+  top: 15%;
+  left: -100px;
+}
+
+.orb-two {
+  width: 270px;
+  height: 270px;
+  background: linear-gradient(135deg, #f0abfc88, #93c5fd88);
+  right: -120px;
+  bottom: 8%;
+}
+
+/* NAVIGASI */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 13px 6%;
+  background: #ffffffdf;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid #dbeafe;
+  box-shadow: 0 5px 25px #1d4ed80b;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #2563eb, #22d3ee, #8b5cf6);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  box-shadow: 0 5px 15px #2563eb35;
+}
+
+.brand h3 {
+  color: #1d4ed8;
+  font-size: 15px;
+}
+
+.brand p {
+  color: #64748b;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.nav-links button {
+  border: 0;
+  background: transparent;
+  color: #475569;
+  padding: 11px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  color: white;
+  background: linear-gradient(110deg, #2563eb, #06b6d4, #8b5cf6);
+  box-shadow: 0 5px 15px #6366f144;
+  transform: translateY(-2px);
+}
+
+/* HALAMAN */
+.page {
+  display: none;
+  max-width: 1200px;
+  margin: auto;
+  padding: 45px 6% 65px;
+  min-height: 78vh;
+  animation: muncul .45s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background: linear-gradient(100deg, #dbeafe, #cffafe, #f3e8ff);
+  color: #4338ca;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, #1d4ed8, #06b6d4, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #64748b;
+  line-height: 1.8;
+}
+
+/* BERANDA */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 45px;
+  min-height: 460px;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 58px);
+  color: var(--navy);
+  margin-bottom: 18px;
+  letter-spacing: -1.5px;
+}
+
+.hero h2 {
+  font-size: 19px;
+  color: #2563eb;
+  margin-bottom: 9px;
+}
+
+.university {
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.quote {
+  color: #64748b;
+  font-style: italic;
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 30px;
+  padding: 13px 21px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: .3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(110deg, #2563eb, #06b6d4, #8b5cf6);
+  box-shadow: 0 7px 18px #2563eb30;
+}
+
+.btn-light {
+  color: #2563eb;
+  background: white;
+  border: 1px solid #bfdbfe;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px #2563eb2b;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+
+.photo-frame {
+  width: 285px;
+  height: 315px;
+  position: relative;
+  border-radius: 46% 46% 35% 35%;
+  background: linear-gradient(140deg, #22d3ee, #2563eb, #c084fc, #f0abfc);
+  padding: 8px;
+  transform: rotate(2deg);
+  box-shadow: 0 20px 50px #2563eb30;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(140deg, #dbeafe, #f5d0fe, #cffafe);
+  border: 5px solid white;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  text-align: center;
+  padding: 20px;
+  color: #1d4ed8;
+}
+
+.photo-placeholder span {
+  font-size: 80px;
+  display: block;
+}
+
+.photo-placeholder p {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.float-card {
+  position: absolute;
+  padding: 13px 17px;
+  border-radius: 17px;
+  background: #ffffffed;
+  box-shadow: 0 10px 30px #2563eb20;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.float-card.one {
+  left: 0;
+  top: 35px;
+  background: linear-gradient(120deg, white, #dbeafe);
+}
+
+.float-card.two {
+  right: -8px;
+  bottom: 40px;
+  background: linear-gradient(120deg, white, #f3e8ff);
+}
+
+/* KARTU */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid white;
+  border-radius: 22px;
+  padding: 22px;
+  background: #ffffffdf;
+  box-shadow: 0 10px 30px #1e40af0d;
+  transition: .3s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: -40px;
+  top: -45px;
+  border-radius: 50%;
+  background: var(--decoration, #dbeafe);
+  opacity: .7;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px #2563eb20;
+  border-color: #bfdbfe;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 13px;
+}
+
+.card-icon {
+  width: 51px;
+  height: 51px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  font-size: 24px;
+  background: linear-gradient(135deg, #dbeafe, #cffafe);
+}
+
+.card h3 {
+  position: relative;
+  color: #1e40af;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.card p {
+  position: relative;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.learn {
+  position: relative;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 13px;
+}
+
+/* PROFIL */
+.profile-layout {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 25px;
+  align-items: stretch;
+}
+
+.profile-banner {
+  border-radius: 28px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(145deg, #2563eb, #06b6d4 50%, #8b5cf6);
+  box-shadow: 0 15px 35px #2563eb25;
+}
+
+.profile-avatar {
+  width: 115px;
+  height: 115px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 5px solid #ffffffb5;
+  background: linear-gradient(135deg, #e0f2fe, #f3e8ff);
+  display: grid;
+  place-items: center;
+  font-size: 55px;
+  overflow: hidden;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-banner h2 {
+  margin-bottom: 8px;
+}
+
+.profile-banner p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #f0f9ff;
+}
+
+.info-card {
+  background: #ffffffed;
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 25px;
+  box-shadow: 0 10px 30px #1e40af0d;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e7ff;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.info-row:last-child {
+  border-bottom: 0;
+}
+
+.info-row strong {
+  color: #64748b;
+}
+
+.info-row span {
+  color: #1e40af;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* AKADEMIK */
+.academic-layout {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 22px;
+}
+
+.table-card {
+  border-radius: 24px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 10px 30px #1e40af0d;
+}
+
+.table-card h2 {
+  color: #1d4ed8;
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+
+.academic-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.academic-row:last-child {
+  border-bottom: 0;
+}
+
+.symbol {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #dbeafe, #cffafe, #f3e8ff);
+}
+
+.academic-row strong {
+  color: #1e40af;
+  font-size: 14px;
+}
+
+.academic-row p {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 5px;
+  line-height: 1.7;
+}
+
+.study-box {
+  padding: 28px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #dbeafe, #cffafe 45%, #ede9fe);
+  border: 1px solid white;
+}
+
+.big-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.study-box h2 {
+  color: #1e40af;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.study-box p {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* KEAHLIAN */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.skill-card {
+  text-align: center;
+  padding: 25px 18px;
+}
+
+.skill-card .card-icon {
+  margin: 0 auto 15px;
+  width: 65px;
+  height: 65px;
+  font-size: 30px;
+  border-radius: 21px;
+}
+
+.skill-card:nth-child(3n+1) {
+  background: linear-gradient(140deg, white, #dbeafe);
+}
+
+.skill-card:nth-child(3n+2) {
+  background: linear-gradient(140deg, white, #cffafe);
+}
+
+.skill-card:nth-child(3n) {
+  background: linear-gradient(140deg, white, #f3e8ff);
+}
+
+/* KONTAK */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.contact-panel {
+  border-radius: 26px;
+  padding: 28px;
+  background: linear-gradient(145deg, #2563eb, #06b6d4, #8b5cf6);
+  color: white;
+  box-shadow: 0 15px 35px #2563eb25;
+}
+
+.contact-panel h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.contact-panel p {
+  color: #eff6ff;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.contact-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px;
+  border-radius: 17px;
+  background: #ffffff20;
+  border: 1px solid #ffffff40;
+  overflow-wrap: anywhere;
+}
+
+.contact-item > span {
+  font-size: 23px;
+}
+
+.contact-item strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.contact-item small {
+  font-size: 12px;
+  color: #eff6ff;
+}
+
+/* MEDIA SOSIAL */
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 15px;
+  background: white;
+  color: #1e40af;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(110deg, #dbeafe, #cffafe, #f3e8ff);
+}
+
+.social-icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 19px;
+}
+
+.instagram-icon {
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+}
+
+.email-icon {
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+}
+
+.whatsapp-icon {
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+}
+
+.linkedin-icon {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+}
+
+/* FOOTER */
+footer {
+  padding: 35px 6%;
+  text-align: center;
+  color: white;
+  background: linear-gradient(110deg, #172554, #1d4ed8, #0891b2, #7c3aed);
+}
+
+footer h2 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+footer p {
+  font-size: 13px;
+  color: #e0f2fe;
+  line-height: 1.8;
+}
+
+.footer-bottom {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff35;
+  font-size: 12px;
+}
+
+.back-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2563eb, #06b6d4, #8b5cf6);
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 7px 20px #2563eb40;
+  z-index: 90;
+}
+
+/* RESPONSIF */
+@media (max-width: 800px) {
+  header { padding: 12px 4%; }
+
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .brand { justify-content: center; }
+
+  .nav-links {
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .nav-links button {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+
+  .page { padding: 35px 5% 50px; }
+
+  .hero,
+  .profile-layout,
+  .academic-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    text-align: center;
+    gap: 15px;
+  }
+
+  .hero-buttons { justify-content: center; }
+
+  .hero-visual { min-height: 330px; }
+
+  .quick-grid,
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .float-card.one { left: 5%; }
+  .float-card.two { right: 3%; }
+}
+
+@media (max-width: 480px) {
+  .quick-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 { font-size: 36px; }
+
+  .photo-frame {
+    width: 245px;
+    height: 280px;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .social-grid { grid-template-columns: 1fr; }
+
+  .card { padding: 19px; }
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Website Profil Mahasiswa</h1>
-    <p>Praktik Administrasi Website</p>
-  </header>
-  <main>
-    <h2>Profil Singkat</h2>
-    <img src="asci.jpg" alt="Foto Profil" width="180">
-    <p>Halo, saya [NUR HASTRI SAFIKA]. Saya sedang belajar memublikasikan website.</p>
-    <h2>Informasi</h2>
-    <ul>
-      <li>Program Studi: Informatika</li>
-      <li>Mata Kuliah: Administrasi Website</li>
-      <li>Topik: Hosting dan publikasi website</li>
-    </ul>
-    <h2>Tujuan</h2>
-    <p>Halaman ini dibuat sebagai latihan mengunggah HTML ke layanan hosting.</p>
-  </main>
-  <footer>Website latihan mahasiswa — 2026</footer>
+
+<div class="orb orb-one"></div>
+<div class="orb orb-two"></div>
+
+<header>
+  <nav class="navbar">
+    <a href="#" class="brand"
+       onclick="bukaHalaman('beranda'); return false;">
+      <div class="brand-logo">🎓</div>
+      <div>
+        <h3>Nur Hastri Safika</h3>
+        <p>Student Portfolio</p>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <button class="active" data-page="beranda"
+              onclick="bukaHalaman('beranda')">Beranda</button>
+      <button data-page="profil"
+              onclick="bukaHalaman('profil')">Profil</button>
+      <button data-page="akademik"
+              onclick="bukaHalaman('akademik')">Informasi</button>
+      <button data-page="keahlian"
+              onclick="bukaHalaman('keahlian')">Keahlian</button>
+      <button data-page="kontak"
+              onclick="bukaHalaman('kontak')">Kontak</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- BERANDA -->
+<section id="beranda" class="page active">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">✨ SELAMAT DATANG DI WEBSITE SAYA</span>
+
+      <h1>Halo, Saya<br>
+        <span class="gradient-text">Nur Hastri Safika</span>
+      </h1>
+
+      <h2>Mahasiswa Program Studi Informatika</h2>
+      <p class="university">🎓 Universitas Cokroaminoto Palopo</p>
+
+      <p class="quote">
+        "Belajar hari ini, untuk masa depan yang lebih baik."
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary"
+                onclick="bukaHalaman('profil')">
+          👤 Lihat Profil Saya →
+        </button>
+
+        <button class="btn btn-light"
+                onclick="bukaHalaman('kontak')">
+          ✉ Hubungi Saya
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-card one">💻 Informatika</div>
+
+      <div class="photo-frame">
+        <div class="photo-inner">
+          <div class="photo-placeholder" id="photoPlaceholder">
+            <span>👩🏻‍🎓</span>
+            <p>Foto Nur Hastri Safika</p>
+            <small>Tambahkan foto kamu</small>
+          </div>
+
+          <img src="asci.jpg" alt="Foto Nur Hastri Safika"
+               onload="document.getElementById('photoPlaceholder').style.display='none'"
+               onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="float-card two">💙 Terus Belajar!</div>
+    </div>
+  </div>
+
+  <div class="quick-grid">
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('akademik')"
+         onkeydown="klikEnter(event,'akademik')"
+         style="--decoration:#bfdbfe">
+      <div class="card-top">
+        <div class="card-icon">🎓</div>
+        <div>
+          <h3>Informatika</h3>
+          <p>Program Studi</p>
+        </div>
+      </div>
+      <p>Mempelajari teknologi, komputer, dan pengembangan sistem informasi.</p>
+      <span class="learn">Lihat informasi →</span>
+    </div>
+
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('akademik')"
+         onkeydown="klikEnter(event,'akademik')"
+         style="--decoration:#a5f3fc">
+      <div class="card-top">
+        <div class="card-icon">🏫</div>
+        <div>
+          <h3>Universitas</h3>
+          <p>Cokroaminoto Palopo</p>
+        </div>
+      </div>
+      <p>Informasi pendidikan dan tempat saya menempuh perkuliahan.</p>
+      <span class="learn">Lihat informasi →</span>
+    </div>
+
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('keahlian')"
+         onkeydown="klikEnter(event,'keahlian')"
+         style="--decoration:#e9d5ff">
+      <div class="card-top">
+        <div class="card-icon">🌐</div>
+        <div>
+          <h3>Administrasi Website</h3>
+          <p>Mata Kuliah</p>
+        </div>
+      </div>
+      <p>Belajar membuat, mengelola, dan mengembangkan sebuah website.</p>
+      <span class="learn">Lihat pembelajaran →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section id="profil" class="page">
+  <div class="section-title">
+    <span class="eyebrow">💜 TENTANG SAYA</span>
+    <h1>Profil <span class="gradient-text">Mahasiswa</span></h1>
+    <p>Mengenal saya lebih dekat.</p>
+  </div>
+
+  <div class="profile-layout">
+    <div class="profile-banner">
+      <div class="profile-avatar">
+        <span id="profilePlaceholder">👩🏻‍🎓</span>
+        <img src="asci.jpg" alt="Foto profil"
+             onload="document.getElementById('profilePlaceholder').style.display='none'"
+             onerror="this.style.display='none'">
+      </div>
+
+      <h2>Nur Hastri Safika</h2>
+      <p>Mahasiswa Informatika</p>
+      <p style="margin-top:15px">
+        ✨ "Terus belajar dan berkembang untuk masa depan."
+      </p>
+
+      <button class="btn btn-light" style="margin-top:20px"
+              onclick="bukaHalaman('kontak')">
+        Hubungi Saya →
+      </button>
+    </div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <strong>👤 Nama Lengkap</strong>
+        <span>Nur Hastri Safika</span>
+      </div>
+      <div class="info-row">
+        <strong>🎓 Program Studi</strong>
+        <span>Informatika</span>
+      </div>
+      <div class="info-row">
+        <strong>🏫 Perguruan Tinggi</strong>
+        <span>Universitas Cokroaminoto Palopo</span>
+      </div>
+      <div class="info-row">
+        <strong>💻 Bidang Minat</strong>
+        <span>Teknologi Informasi dan Website</span>
+      </div>
+      <div class="info-row">
+        <strong>📚 Mata Kuliah</strong>
+        <span>Administrasi Website</span>
+      </div>
+      <div class="info-row">
+        <strong>🌟 Tujuan</strong>
+        <span>Meningkatkan kemampuan di bidang teknologi informasi.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px;background:linear-gradient(120deg,#dbeafe,#cffafe,#f3e8ff)">
+    <h3>💙 Tentang Saya</h3>
+    <p>Saya adalah mahasiswa Program Studi Informatika di Universitas Cokroaminoto Palopo. Saya tertarik mempelajari teknologi informasi, pengembangan website, dan berbagai keterampilan komputer. Melalui perkuliahan, saya ingin terus menambah pengetahuan dan pengalaman.</p>
+  </div>
+</section>
+
+<!-- INFORMASI AKADEMIK -->
+<section id="akademik" class="page">
+  <div class="section-title">
+    <span class="eyebrow">📚 DATA PENDIDIKAN</span>
+    <h1>Informasi <span class="gradient-text">Akademik</span></h1>
+    <p>Informasi mengenai program studi dan pembelajaran saya.</p>
+  </div>
+
+  <div class="academic-layout">
+    <div class="table-card">
+      <h2>📘 Informasi Perkuliahan</h2>
+
+      <div class="academic-row">
+        <div class="symbol">👤</div>
+        <div><strong>Nama Mahasiswa</strong><p>Nur Hastri Safika</p></div>
+      </div>
+
+      <div class="academic-row">
+        <div class="symbol">🎓</div>
+        <div><strong>Program Studi</strong><p>Informatika</p></div>
+      </div>
+
+      <div class="academic-row">
+        <div class="symbol">🏫</div>
+        <div><strong>Universitas</strong><p>Universitas Cokroaminoto Palopo</p></div>
+      </div>
+
+      <div class="academic-row">
+        <div class="symbol">💻</div>
+        <div><strong>Mata Kuliah</strong><p>Administrasi Website</p></div>
+      </div>
+
+      <div class="academic-row">
+        <div class="symbol">🌐</div>
+        <div><strong>Topik Pembelajaran</strong><p>Pembuatan, pengelolaan, dan publikasi website.</p></div>
+      </div>
+    </div>
+
+    <div class="study-box">
+      <div class="big-icon">🎓📖</div>
+      <h2>Tujuan Pembelajaran</h2>
+      <p>Mempelajari proses pembuatan dan pengelolaan website, memahami dasar desain antarmuka, serta meningkatkan kemampuan menggunakan teknologi informasi.</p>
+
+      <button class="btn btn-primary" style="margin-top:22px"
+              onclick="bukaHalaman('keahlian')">
+        Lihat Keahlian →
+      </button>
+    </div>
+  </div>
+
+  <div class="quick-grid">
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('keahlian')"
+         onkeydown="klikEnter(event,'keahlian')">
+      <div class="card-icon">🎨</div>
+      <h3>Desain Website</h3>
+      <p>Mempelajari tampilan website yang menarik dan mudah digunakan.</p>
+      <span class="learn">Pelajari lebih lanjut →</span>
+    </div>
+
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('keahlian')"
+         onkeydown="klikEnter(event,'keahlian')">
+      <div class="card-icon">🧑‍💻</div>
+      <h3>Pemrograman</h3>
+      <p>Mengenal HTML, CSS, dan dasar pengembangan website.</p>
+      <span class="learn">Pelajari lebih lanjut →</span>
+    </div>
+
+    <div class="card clickable" tabindex="0" role="link"
+         onclick="bukaHalaman('kontak')"
+         onkeydown="klikEnter(event,'kontak')">
+      <div class="card-icon">✉️</div>
+      <h3>Informasi Kontak</h3>
+      <p>Buka halaman kontak untuk melihat informasi yang tersedia.</p>
+      <span class="learn">Lihat kontak →</span>
+    </div>
+  </div>
+</section>
+
+<!-- KEAHLIAN -->
+<section id="keahlian" class="page">
+  <div class="section-title">
+    <span class="eyebrow">✨ MINAT DAN PEMBELAJARAN</span>
+    <h1>Keahlian dan <span class="gradient-text">Pembelajaran</span></h1>
+    <p>Bidang teknologi yang ingin saya pelajari dan kembangkan.</p>
+  </div>
+
+  <div class="skills-grid">
+    <div class="card skill-card">
+      <div class="card-icon">🌐</div>
+      <h3>HTML</h3>
+      <p>Mengenal struktur dasar untuk membuat halaman website.</p>
+    </div>
+
+    <div class="card skill-card">
+      <div class="card-icon">🎨</div>
+      <h3>CSS</h3>
+      <p>Mempelajari warna, tata letak, dan desain website.</p>
+    </div>
+
+    <div class="card skill-card">
+      <div class="card-icon">🖥️</div>
+      <h3>Desain Website</h3>
+      <p>Mempelajari tampilan antarmuka yang menarik dan responsif.</p>
+    </div>
+
+    <div class="card skill-card">
+      <div class="card-icon">⚙️</div>
+      <h3>Administrasi Website</h3>
+      <p>Mengenal pengelolaan dan pemeliharaan sebuah website.</p>
+    </div>
+
+    <div class="card skill-card">
+      <div class="card-icon">☁️</div>
+      <h3>Hosting Website</h3>
+      <p>Mempelajari proses publikasi website ke internet.</p>
+    </div>
+
+    <div class="card skill-card">
+      <div class="card-icon">💡</div>
+      <h3>Teknologi Informasi</h3>
+      <p>Mengembangkan pengetahuan tentang teknologi dan komputer.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:25px;background:linear-gradient(110deg,#dbeafe,#cffafe,#ede9fe);text-align:center">
+    <h3>🚀 Terus Belajar, Terus Berkembang!</h3>
+    <p>Setiap proses belajar adalah kesempatan untuk menjadi lebih baik.</p>
+    <button class="btn btn-primary" style="margin-top:18px"
+            onclick="bukaHalaman('kontak')">
+      Hubungi Saya →
+    </button>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="page">
+  <div class="section-title">
+    <span class="eyebrow">💌 HUBUNGI SAYA</span>
+    <h1>Kontak <span class="gradient-text">& Informasi</span></h1>
+    <p>Terima kasih telah mengunjungi website profil saya.</p>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-panel">
+      <h2>Senang Bertemu Kamu! 💙</h2>
+      <p>Halaman ini berisi informasi mengenai pendidikan dan kontak saya.</p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span>🎓</span>
+          <div>
+            <strong>Universitas</strong>
+            <small>Universitas Cokroaminoto Palopo</small>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span>💻</span>
+          <div>
+            <strong>Program Studi</strong>
+            <small>Informatika</small>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span>📍</span>
+          <div>
+            <strong>Lokasi</strong>
+            <small>Palopo, Sulawesi Selatan</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h2 style="color:#1d4ed8;margin-bottom:12px">
+        🌈 Media Sosial
+      </h2>
+
+      <p style="color:#64748b;font-size:14px;line-height:1.8">
+        Kamu dapat mengunjungi akun Instagram saya melalui tombol berikut.
+      </p>
+
+      <div class="social-grid">
+        <!-- INSTAGRAM -->
+        <a class="social-link"
+           href="https://www.instagram.com/nur.hastri/"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="social-icon instagram-icon">◎</span>
+          <span>
+            Instagram
+            <br>
+            <small>@nur.hastri</small>
+          </span>
+        </a>
+
+        <!-- EMAIL -->
+        <a class="social-link"
+           href="mailto:emailkamu@example.com">
+          <span class="social-icon email-icon">✉</span>
+          <span>Email</span>
+        </a>
+
+        <!-- WHATSAPP: GANTI NOMOR CONTOH -->
+        <a class="social-link"
+           href="#"
+           onclick="return tautanBelumDiisi(event)">
+          <span class="social-icon whatsapp-icon">✆</span>
+          <span>WhatsApp</span>
+        </a>
+
+        <!-- LINKEDIN -->
+        <a class="social-link"
+           href="#"
+           onclick="return tautanBelumDiisi(event)">
+          <span class="social-icon linkedin-icon">in</span>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+      <button class="btn btn-primary" style="margin-top:25px"
+              onclick="bukaHalaman('beranda')">
+        ← Kembali ke Beranda
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <h2>Terima Kasih 💙</h2>
+  <p>Sudah mengunjungi website profil mahasiswa saya.</p>
+  <p>Terus belajar, berkarya, dan berkembang!</p>
+  <div class="footer-bottom">
+    © 2026 Nur Hastri Safika | Website Profil Mahasiswa
+  </div>
+</footer>
+
+<button class="back-top"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Kembali ke atas">↑</button>
+
+<script>
+function bukaHalaman(namaHalaman) {
+  const halamanTujuan = document.getElementById(namaHalaman);
+
+  if (!halamanTujuan) return;
+
+  document.querySelectorAll('.page').forEach(function(halaman) {
+    halaman.classList.remove('active');
+  });
+
+  halamanTujuan.classList.add('active');
+
+  document.querySelectorAll('.nav-links button').forEach(function(tombol) {
+    tombol.classList.toggle(
+      'active',
+      tombol.dataset.page === namaHalaman
+    );
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+function klikEnter(event, namaHalaman) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    bukaHalaman(namaHalaman);
+  }
+}
+
+function tautanBelumDiisi(event) {
+  event.preventDefault();
+  alert('Silakan tambahkan tautan akun kamu terlebih dahulu.');
+  return false;
+}
+</script>
+
 </body>
 </html>
